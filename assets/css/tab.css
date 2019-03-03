@@ -1,0 +1,31 @@
+
+
+.tabbar {
+    display: flex;
+}
+
+.tabbar__tab {
+    align-items: center;
+    background-color: #f1f3f4;
+    border-bottom: none;
+    border-left: 1px solid #e8eaed;
+    border-radius: 0;
+    border-right: 1px solid #e8eaed;
+    border-top: 1px solid #e8eaed;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    height: 39px;
+    margin-right: -1px;
+    min-width: 100px;
+    padding: 0 12px 0 16px;
+}
+
+.tabbar__tab--focus {
+    background-color: #fff;
+    border-top-color: #f1f3f4;
+}
+
+.tabbar__tab-content--blur {
+    display: none;
+}
