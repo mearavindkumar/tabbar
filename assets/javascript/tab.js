@@ -11,71 +11,6 @@
     'use strict';
 
 
-//    var config = {
-//        el: "Tab",
-//        tabs: [
-//            {
-//                content: {
-//                    el: "one",
-//                    css: {
-//                        classList: [],
-//                        focus: "",
-//                        blur: ""
-//                    }
-//                },
-//                name: "a1",
-//                display: "Tab 1",
-//                focus: true,
-//                css: {
-//                    classList: [],
-//                    focus: "",
-//                    blur: ""
-//                }
-//            },
-//            {
-//                content: {
-//                    el: "two",
-//                    css: {
-//                        classList: [],
-//                        focus: ""
-//                    }
-//                },
-//                name: "a2",
-//                display: "Tab 2",
-//                css: {
-//                    classList: [],
-//                    focus: ""
-//                }
-//            },
-//            {
-//                content: {
-//                    el: "three",
-//                    css: {
-//                        classList: [],
-//                        focus: ""
-//                    }
-//                },
-//                name: "a3",
-//                display: "Tab 3",
-//                css: {
-//                    classList: [],
-//                    focus: ""
-//                }
-//            }
-//
-//        ],
-//        css: {
-//            classList: [],
-//            tabClassList: [],
-//            tabContentClassList: [],
-//            blurTab: "",
-//            blurTabContent: "",
-//            focusTab: "",
-//            focusTabContent: ""
-//        }
-//    };
-
-
     function query(el) {
         if (isString(el)) {
             var selected = document.getElementById(el) || document.querySelector(el);
@@ -108,7 +43,7 @@
 
     function makeTabbarEl(config) {
         config.el = query(config.el);
-        var css = config.css;
+        var css = config.css || {};
         css && addClassList(config.el, css.classList);
         config.el.classList.add("tabbar");
         return config.el;
@@ -118,8 +53,8 @@
     function makeTabEl(config, i) {
         var tab = config.tabs[i];
         tab.el = query(tab.el) || tabEl(tab.name);
-        var tabCSS = tab.css;
-        var configCSS = config.css;
+        var tabCSS = tab.css || {};
+        var configCSS = config.css || {};
         addClassList(tab.el, tabCSS.classList || configCSS.tabClassList);
         var textNode = document.createTextNode(tab.name || "");
         var blurCSS = tabCSS.blur || configCSS.blurTab;
@@ -132,8 +67,8 @@
     function makeTabContentEl(config, i) {
         var tab = config.tabs[i];
         tab.content.el = query(tab.content.el);
-        var contentCSS = tab.content.css;
-        var configCSS = config.css;
+        var contentCSS = tab.content.css || {};
+        var configCSS = config.css || {};
         addClassList(tab.content.el, contentCSS.classList || configCSS.tabContentClassList);
         var blurCSS = contentCSS.blur || configCSS.blurTabContent;
         blurCSS && tab.content.el.classList.add(blurCSS);
@@ -156,9 +91,9 @@
 
     function deactivate(config, i) {
         var tab = config.tabs[i];
-        var tabCSS = tab.css;
-        var configCSS = config.css;
-        var contentCSS = tab.content.css;
+        var tabCSS = tab.css || {};
+        var configCSS = config.css || {};
+        var contentCSS = tab.content.css || {};
         var blurCSS = tabCSS.blur || configCSS.blurTab;
         var focusCSS = tabCSS.focus || configCSS.focusTab || "tabbar__tab--focus";
         focusCSS && tab.el.classList.remove(focusCSS);
@@ -174,9 +109,9 @@
 
     function activate(config, i) {
         var tab = config.tabs[i];
-        var tabCSS = tab.css;
-        var configCSS = config.css;
-        var contentCSS = tab.content.css;
+        var tabCSS = tab.css || {};
+        var configCSS = config.css || {};
+        var contentCSS = tab.content.css || {};
         var blurCSS = tabCSS.blur || configCSS.blurTab;
         var focusCSS = tabCSS.focus || configCSS.focusTab || "tabbar__tab--focus";
         focusCSS && tab.el.classList.add(focusCSS);
